@@ -1,0 +1,380 @@
+body {
+    padding: 0;
+    margin: 0;
+    min-height:100%;
+    background-color: #555;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Helvetica,Arial,sans-serif;
+    color: white;
+    background-size: cover;
+}
+
+header {
+    width: 100%;
+}
+
+#link {
+    color: black;
+    background-color: white;
+    padding: 5px;
+    float: right;
+}
+#message{
+    display: inline-block;
+    text-align: center;
+    font-size: 30px;
+    height: 50px;
+    width: 100%;
+}
+
+#b-side-selection-wrapper {
+    margin-top: 5px;
+}
+
+#b-side-selection {
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    width: 240px;
+    margin: 0 auto;
+    font-size: 1.25em;
+}
+
+#b-side-selection li {
+    height: inherit;
+    width: 50%;
+    float: left;
+    list-style-type: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+#b-side-selection li:nth-child(1){
+    margin-left: 0;
+}
+
+li:hover {
+    background-color: #666;
+    outline: 1px solid white;
+}
+
+li:active, .active, li:hover.active{
+    background-color: #999;
+}
+
+.selectionBox {
+    margin: auto;
+    height: 600px;
+    width: 65%;
+    padding-top: 30px;
+}
+
+.leftChoice, .rightChoice {
+    height: inherit;
+    width: 500px;
+    cursor: pointer;
+}
+
+.leftChoice {
+    float: left;
+}
+.rightChoice {
+    float: right;
+}
+
+#leftImage, #rightImage {
+    background-color: #aaa;
+    height: 500px;
+    width: 500px;
+    background-size: contain;
+}
+
+.imageText {
+    text-align: center;
+}
+
+#leftSong, #rightSong {
+    font-size: 32px;
+}
+
+#leftAlbum, #rightAlbum {
+    font-size: 18px;
+}
+
+#skipButton {
+    height: 40px;
+    width: 150px;
+    background: #888;
+    font-size: 32px;
+    margin: auto;
+    text-align: center;
+    cursor: pointer;
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+#kb-shortcuts {
+    margin: 0 auto;
+    margin-top: 40px;
+    height: 80px;
+    width: 300px;
+    font-size: 20px;
+}
+
+#shortcut-text > *:first-child{
+    width: 46%;
+    padding-right: 10px;
+    border-right: 2px solid;
+    float:left;
+    text-align:right;
+}
+#shortcut-text > *:nth-child(2){
+    padding-left: 10px;
+    float:left;
+}
+
+.fadeOutline {
+    -webkit-animation: fade 0.5s ease-out;
+    -moz-animation: fade 0.5s ease-out;
+    -ms-animation: fade 0.5s ease-out;
+    -o-animation: fade 0.5s ease-out;
+    animation: fade 0.5s ease-out;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fade {
+    from {outline: 8px solid rgba(225, 31, 39, 1)}
+    to {outline: 8px solid rgba(225, 31, 39, 0)}
+}
+
+/* Standard syntax */
+@keyframes fade {
+    from {outline: 8px solid rgba(225, 31, 39, 1)}
+    to {outline: 8px solid rgba(225, 31, 39, 0)}
+}
+
+@media screen
+and (min-device-width: 1200px)
+and (max-device-width: 1600px){
+    .selectionBox {
+        height: 420px;
+        width: 75%;
+    }
+    .leftChoice, .rightChoice {
+        width: 400px;
+    }
+    #leftImage, #rightImage {
+        height: 400px;
+        width: 400px;
+    }
+}
+
+@media only screen
+and (max-device-width: 1024px)
+and (orientation: portrait){
+    #message {
+        font-size: 2.5em;
+    }
+    #link {
+        font-size: 2em;
+    }
+    #leftImage, #rightImage {
+        background-color: #aaa;
+        height: 375px;
+        width: 375px;
+    }
+    #b-side-selection-wrapper {
+        margin-bottom: 4%;
+    }
+    #b-side-selection {
+        height: 75px;
+        width: 360px;
+        font-size: 2em;
+    }
+    .selectionBox {
+        height: 74%;
+        width: 100%;
+        padding-top: 20px;
+    }
+    .leftChoice, .rightChoice {
+        height: 50%;
+        width: 100%;
+    }
+    #leftImage, #rightImage {
+        margin: auto;
+    }
+    #leftSong, #rightSong {
+        font-size: 2em;
+    }
+    #leftAlbum, #rightAlbum {
+        font-size: 1.5em;
+    }
+    #skipButton {
+        height: 80px;
+        width: 225px;
+        background: #888;
+        font-size: 4.2em;
+        margin: auto;
+        text-align: center;
+        margin-bottom: 200px;
+    }
+}
+
+@media only screen
+and (max-device-width: 1024px)
+and (orientation: landscape){
+    #message {
+        font-size: 2.5em;
+    }
+    #link {
+        font-size: 2em;
+    }
+    #leftImage, #rightImage {
+        background-color: #aaa;
+        height: 375px;
+        width: 375px;
+    }
+    .selectionBox {
+        height: 65%;
+        width: 100%;
+        padding-top: 40px;
+    }
+    .leftChoice, .rightChoice {
+        height: 100%;
+        width: 50%;
+        float: left;
+    }
+    #leftImage, #rightImage {
+        margin: auto;
+    }
+    #leftSong, #rightSong {
+        font-size: 2em;
+    }
+    #leftAlbum, #rightAlbum {
+        font-size: 1.5em;
+    }
+    #skipButton {
+        height: 60px;
+        width: 168.75px;
+        background: #888;
+        font-size: 3.15em;
+        margin: auto;
+        text-align: center;
+        margin-bottom: 200px;
+    }
+}
+
+@media only screen
+and (max-device-width: 480px)
+and (orientation: portrait){
+    html, body {
+        height: 100%;
+        position: static;
+        overflow: hidden;
+    }
+    body {
+        font-family: Helvetica,sans-serif;
+    }
+    #message {
+        height: 4%;
+        padding-top: 2%;
+        font-size: 3em;
+        margin-top: 5%;
+    }
+    #link {
+        margin-top: 0;
+    }
+    .selectionBox {
+        padding: 0;
+        margin: 0;
+        height: 72%;
+        width: 100%;
+    }
+    .leftChoice, .rightChoice {
+        height: 50%;
+        width: 100%;
+        float: none;
+    }
+    .rightChoice {
+        padding: 0;
+    }
+    #leftImage, #rightImage {
+        margin: 0 auto;
+    }
+    #leftSong, #rightSong {
+        font-size: 3em;
+    }
+    #leftAlbum, #rightAlbum {
+        font-size: 2em;
+    }
+    .imageText {
+        text-align: -webkit-center;
+    }
+}
+
+@media only screen
+and (max-device-width: 480px)
+and (orientation: landscape){
+    html, body {
+        height: 100%;
+        position: static;
+        overflow: hidden;
+    }
+    body {
+        font-family: Helvetica,sans-serif;
+    }
+    header {
+        position: absolute;
+    }
+    #message {
+        height: 8%;
+        padding-top: 2%;
+        font-size: 1.4em;
+    }
+    #link {
+        margin-top: 0;
+        font-size: 1.2em;
+    }
+    .selectionBox {
+        padding: 0;
+        padding-top: 0;
+        margin: 0;
+        margin-top: 0;
+        height: 62%;
+        width: 100%;
+    }
+    .leftChoice, .rightChoice {
+        width: 50%;
+        float: none;
+    }
+    .leftChoice {
+        float: left;
+    }
+    .rightChoice {
+        float: left ;
+        padding: 0;
+    }
+    #leftImage, #rightImage {
+        margin: 0 auto;
+        height: 200px;
+        width: 200px;
+    }
+    .imageText {
+        text-align: -webkit-center;
+    }
+
+    #leftSong, #rightSong {
+        font-size: 2em;
+    }
+    #leftAlbum, #rightAlbum {
+        font-size: 1.4em;
+    }
+    #skipButton {
+        height: 40px;
+        width: 130px;
+        font-size: 2em;
+        margin: auto;
+        text-align: center;
+        margin-bottom: 200px;
+    }
+}

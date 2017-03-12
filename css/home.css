@@ -1,0 +1,67 @@
+body {
+    background-color: #AAA;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    font-size: 10em;
+    text-align: center;
+}
+
+header {
+    text-align: center;
+}
+
+#logo-wrapper {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 35vh;
+}
+
+#logo {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+a, a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+#main-menu-wrapper {
+    background-color: #999;
+    font-size: 1.6em;
+}
+
+#main-menu {
+    width: 50%;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+#main-menu ul{
+    padding: 0;
+    margin: 0 auto;
+    list-style-type: none;
+}
+
+#main-menu ul li {
+    float: left;
+    margin: 0;
+    width: 50%;
+}
+
+#main-menu ul li p{
+    margin: 0;
+}
+
+#main-menu ul li ul {
+
+}
+
+@media only screen and (max-device-width: 480px){
+    body {font-family: Helvetica, sans-serif;}
+}
