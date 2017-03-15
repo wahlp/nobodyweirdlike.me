@@ -1,30 +1,50 @@
-var albums;
+var albums, albumsGlobal, albumsPersonal;
 
 function getGlobalRanks(){
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET',"/ranking", true);
-    xhr.send();
-    xhr.onreadystatechange = function(){
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            albums = JSON.parse(xhr.responseText);
-            reapplyFilters();
+    return new Promise(function(resolve, reject){
+        publicFilters[1].classList.add('disabled'); //disable clicks on personal button while requesting from server
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET',"/ranking", true);
+        xhr.send();
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                resolve(JSON.parse(xhr.responseText))
+            }
         }
-    }
+    });
+}
+function getPersonalRanks(){
+    return new Promise(function(resolve, reject){
+        publicFilters[0].classList.add('disabled'); //disable clicks on global button while requesting from server
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST',"/ranking", true);
+        xhr.send();
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                if(xhr.responseText != '')
+                    resolve(JSON.parse(xhr.responseText))
+                else
+                    reject()
+            }
+        }
+    });
+}
+var loadingGif = document.getElementById('loading-gif');
+function toggleLoadingGif(){
+    if(loadingGif.style.display == 'block')
+        loadingGif.style.display = 'none';
+    else
+        loadingGif.style.display = 'block';
 }
 
-function getPersonalRanks(){
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST',"/ranking", true);
-    xhr.send();
-    xhr.onreadystatechange = function(){
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            albums = JSON.parse(xhr.responseText);
-            reapplyFilters();
-        }
+function enablePublicFilterButtons(){
+    for (var i = 0; i < publicFilters.length; i++){
+        publicFilters[i].classList.remove('disabled');
     }
 }
 
 function reapplyFilters(){
+    clearTable();
     buildTable();
     sortTable(3, true);
     switchOrderFilter(document.getElementsByClassName("active")[1].textContent);
@@ -78,7 +98,6 @@ function sortTable(col, reverse) { //reverse = true or false
     for(i = 0; i < tr.length; ++i) tb.appendChild(tr[i]); // append each row in order
     setRankNumbers(col);
 }
-
 function checklocaleCompareSupport() {
   try {
     'foo'.localeCompare('bar', 'i');
@@ -88,7 +107,6 @@ function checklocaleCompareSupport() {
   return false;
 }
 var localCompareSupport = checklocaleCompareSupport();
-
 function naturalSorter(as, bs){
     var a, b, a1, b1, i= 0, n, L,
     rx=/(\.\d+)|(\d+(\.\d+)?)|([^\d.]+)|(\.\D+)|(\.$)/g;
@@ -130,13 +148,15 @@ var orderFilters = document.getElementById("order-filter").children;
 var albumFilters = document.getElementById("album-filter").children;
 
 //public filter selection events
+var personalButton_enabled = true;
 for (var i = 0; i < publicFilters.length; i++){
     publicFilters[i].addEventListener("click", (function(i){
         return function(){
-            if(document.getElementsByClassName("active")[0] != this){ //do nothing if user clicks on already active element
+            if(document.getElementsByClassName("active")[0] != this){ //change only if user clicks on a different element
+                if (!personalButton_enabled && this == publicFilters[1]) {return}
                 switchPublicFilter(this.textContent);
+                setActive(i, 0);
             }
-            setActive(i, 0);
         }
     })(i))
 }
@@ -153,8 +173,10 @@ for (var i = 0; i < orderFilters.length; i++){
 for (var i = 0; i < albumFilters.length; i++){
     albumFilters[i].addEventListener("click", (function(i){
         return function(){
-            switchAlbumFilter(this.textContent);
-            setActive(i, 2);
+            if(document.getElementsByClassName("active")[2] != this){
+                switchAlbumFilter(this.textContent);
+                setActive(i, 2);
+            }
         }
     })(i))
 }
@@ -197,7 +219,7 @@ function switchAlbumFilter(filterText){
 }
 
 
-function replaceTable(){
+function clearTable(){
     var newTable = document.createElement('tbody');
     table.parentNode.replaceChild(newTable, table);
     table = newTable;
@@ -212,7 +234,7 @@ function switchOrderFilter(filterText){
 
     switch (filterText){
         case "Tracklist":
-                        replaceTable();
+                        clearTable();
                         buildTable();
                         switchAlbumFilter(document.getElementsByClassName("active")[2].textContent); //reapply album filter
                         break;
@@ -227,20 +249,47 @@ function switchOrderFilter(filterText){
 
 function switchPublicFilter(filterText){
     switch (filterText){
-        case 'Global':      replaceTable();
-                            getGlobalRanks();
+        case 'Global':      switchDisplayedAlbumsObj(albumsGlobal);
                             break;
-        case 'Personal':    replaceTable();
-                            getPersonalRanks();
+        case 'Personal':    if(albumsPersonal == undefined){
+                                toggleLoadingGif();
+                                getPersonalRanks().then(function(result){
+                                    albumsPersonal = result;
+                                    switchDisplayedAlbumsObj(albumsPersonal);
+                                    toggleLoadingGif();
+                                }).catch(function(e){ //throw user back to global if no personal records found
+                                    personalButton_enabled = false;
+                                    publicFilters[0].classList.remove('disabled');
+                                    setActive(0, 0);
+                                    publicFilters[1].classList.add('disabled');
+                                    toggleLoadingGif();
+                                });
+                            }
+                            else {
+                                switchDisplayedAlbumsObj(albumsPersonal);
+                            }
                             break;
     }
 }
+
+function switchDisplayedAlbumsObj(albumsObj){
+    albums = albumsObj;
+    reapplyFilters();
+    enablePublicFilterButtons();
+}
+
 //adjustments for mobile and smaller resolutions
 if (window.matchMedia('(max-device-width: 1080px)').matches) {
     var tableHead = document.getElementById("tableHead");
+    tableHead.children[0].textContent = "#";
     tableHead.children[4].textContent = "W";
     tableHead.children[5].textContent = "L";
 }
 
 //run on start
-getGlobalRanks();
+toggleLoadingGif();
+getGlobalRanks().then(function(result){
+    albumsGlobal = result;
+    switchDisplayedAlbumsObj(albumsGlobal);
+    toggleLoadingGif();
+});
