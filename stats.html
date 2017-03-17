@@ -1,0 +1,77 @@
+<head>
+    <title>nobodyweirdlike.me - Stats</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/stats.css">
+</head>
+<body>
+    <header>
+        <div id="logo-wrapper">
+            <a href="/" id="logo">
+                <img src="images/logo.png">
+            </a>
+        </div>
+        <div id='menu-wrapper'>
+            <div id='main-menu'>
+                <ul>
+                    <li>
+                        <p><a href='/vote'>Voting</a></p>
+                    </li>
+                    <li>
+                        <p><a href='/ranks'>Ranks</a></p>
+                    </li>
+                    <li>
+                        <p><a href='/stats'>Stats</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div id='numbers'>
+        <div id='global-votes-wrapper'>
+            <div>Total votes</div>
+            <p id='global-votes'>input</p>
+            <div>
+                <div class='square'><div id='global-left'>input</div></div>
+                <div class='square'><div id='global-right'>input</div></div>
+            </div>
+        </div>
+        <div id='personal-votes-wrapper'>
+            <div>Your votes</div>
+            <p id='personal-votes'>input</p>
+            <div>
+                <div class='square'><div id='personal-left'>input</div></div>
+                <div class='square'><div id='personal-right'>input</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div id='statements'>
+        <div>
+            Out of <span id='user-count'></span> users, you currently account for
+            <div><span id='contribution-total'></span>% of the total votes</div>
+            <div><span id='contribution-left'></span>% of the left votes</div>
+            <div><span id='contribution-right'></span>% of the right votes</div>
+        </div>
+        <div>
+            The similarity between the order of your ranks and the collective global ranks is <span id='similarity'></span>%
+        </div>
+    </div>
+
+    <table id="rankTable">
+        <thead>
+            <tr id="tableHead">
+                <td>Rank</td>
+                <td>Album</td>
+                <td>Average Rating</td>
+                <td>Wins</td>
+                <td>Losses</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script src="js/stats.js"></script>
+</body>

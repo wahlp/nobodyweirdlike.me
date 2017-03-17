@@ -1,0 +1,255 @@
+html, body {
+    min-width: 100vw;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: #999;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    text-align: center;
+    font-size: 1.6em;
+    background-color: #888;
+}
+
+#logo-wrapper {
+    text-align: center;
+    margin: 0 auto;
+}
+
+#logo {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+a, a:visited {
+    text-decoration: none;
+}
+header a, header a:visited {
+    color: white;
+}
+
+#menu-wrapper {
+    border-top: 2px solid #222;
+    background-color: #888;
+}
+
+#main-menu {
+    width: 40%;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+#main-menu ul{
+    padding: 0;
+    margin: 0 auto;
+    list-style-type: none;
+}
+
+#main-menu ul li {
+    float: left;
+    margin: 0;
+    width: 33%;
+}
+
+#main-menu ul li p{
+    margin: 0;
+}
+
+#numbers {
+    margin-top: 40px;
+    font-size: 3em;
+    text-align: center;
+    display: flex;
+}
+
+#global-votes-wrapper, #personal-votes-wrapper {
+    width: 50%;
+    float: left;
+}
+
+#global-votes, #personal-votes {
+    font-size: 0.8em;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.square {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    float: left;
+    width: 20%;
+    height: 0;
+    padding-bottom: 20%;
+    background-color: #666;
+}
+
+.square:nth-child(1){
+    margin-left: 20%;
+}
+.square:nth-child(2){
+    margin-left: 20%;
+}
+
+.square > * {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.6em;
+}
+
+.fading {
+    -webkit-animation: fade 1s ease-out;
+    -moz-animation: fade 1s ease-out;
+    -ms-animation: fade 1s ease-out;
+    -o-animation: fade 1s ease-out;
+    animation: fade 1s ease-out;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fade {
+    from {background-color: #888}
+    to {background-color: #666}
+}
+/* Standard syntax */
+@keyframes fade {
+    from {background-color: #888}
+    to {background-color: #666}
+}
+
+.fading-text {
+    -webkit-animation: fadeText 2s ease-out;
+    -moz-animation: fadeText 2s ease-out;
+    -ms-animation: fadeText 2s ease-out;
+    -o-animation: fadeText 2s ease-out;
+    animation: fadeText 2s ease-out;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeText {
+    from {color: #999}
+    to {color: #000}
+}
+/* Standard syntax */
+@keyframes fadeText {
+    from {color: #999}
+    to {color: #000}
+}
+
+#statements {
+    margin-top: 60px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+#statements > *:first-child{
+    margin-top: 0;
+}
+
+#statements > *:first-child > div:nth-child(2){
+    margin-top: 20px;
+}
+
+#statements > * {
+    margin-top: 30px;
+}
+
+table {
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    font-size: 30px;
+    width: 80%;
+    border-collapse: collapse;
+    color: white;
+}
+
+#tableHead td {
+    cursor: pointer;
+}
+
+#tableHead td:first-child{
+    cursor: initial;
+}
+
+.arrow-up:before {
+    content: "";
+    position: relative;
+    width: 0;
+    height: 0;
+    top: 25px;
+    right: 10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+}
+
+.arrow-down:before {
+    content: "";
+    position: relative;
+    width: 0;
+    height: 0;
+    top: 25px;
+    right: 10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white;
+}
+
+tbody {
+    width: inherit;
+}
+
+tr {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0;
+}
+
+td {
+    padding: 0;
+    height: 45px;
+    text-align: center;
+    outline: 1px solid;
+    display: inline-block;
+    background-color: rgba(0,0,0,.75);
+    line-height: 1.4;
+    overflow: hidden;
+    float: left;
+}
+
+td:nth-child(1){
+    width: 6.25%;
+}
+
+td:nth-child(2){
+    width: 43.75%;
+}
+
+td:nth-child(3){
+    width: 25%;
+}
+
+td:nth-child(4), td:nth-child(5){
+    width: 12.5%;
+}
+
+@media only screen and (max-device-width: 768px){
+    table {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-device-width: 480px){
+    body {font-family: Helvetica, sans-serif;}
+    #statements {
+        font-size: 0.9em;
+    }
+    table {
+        width: 100%;
+    }
+}
