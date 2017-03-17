@@ -1,5 +1,3 @@
-/*html { margin-left: calc(100vw - 100%); }*/
-
 body {
     background-color: #555;
     font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
@@ -11,16 +9,61 @@ body {
     overflow-x: hidden;
 }
 
-#link {
-    color: black;
-    background-color: white;
-    padding: 5px;
+a, a:visited {
+    text-decoration: none;
 }
+header a, header a:visited {
+    color: white;
+}
+
+header {
+    text-align: center;
+    color: white;
+    font-size: 1.6em;
+}
+
+#menu-wrapper {
+    border-top: 2px solid #222;
+    background-color: #888;
+}
+#main-menu {
+    width: 40%;
+    margin: 0 auto;
+    display: inline-block;
+}
+#main-menu ul{
+    padding: 0;
+    margin: 0 auto;
+    list-style-type: none;
+}
+#main-menu ul li {
+    float: left;
+    margin: 0;
+    width: 33%;
+}
+#main-menu ul li p{
+    margin: 0;
+}
+
+#login-menu {
+    width: 8%;
+    float: right;
+    margin-left: -8%;
+}
+#login-menu ul{
+    padding: 0;
+    margin: 0 auto;
+    list-style-type: none;
+}
+#login-menu ul li p{
+    margin: 0;
+}
+
 
 #logo-wrapper {
     text-align: center;
     margin: 0 auto;
-    margin-top: -29px;
+    background-color: #888;
 }
 
 #logo {
@@ -28,7 +71,7 @@ body {
     margin: 0 auto;
 }
 
-li {
+#filter-wrapper > * > li {
     float: left;
     list-style-type: none;
     text-align: center;
@@ -82,12 +125,12 @@ li {
     flex-direction: column;
 }
 
-li:hover {
+#filter-wrapper > * > li:hover {
     background-color: #666;
     outline: 1px solid white;
 }
 
-li:active, .active, li:hover.active{
+#filter-wrapper > * > li:active, .active, li:hover.active{
     background-color: #999;
 }
 
@@ -96,6 +139,7 @@ table {
     font-size: 30px;
     width: 80%;
     border-collapse: collapse;
+    margin-bottom: 15px;
 }
 
 tbody {
@@ -211,7 +255,6 @@ and (max-device-width: 1440px)
 @media only screen and (max-device-width: 768px){
     #logo img{
         max-width: 60%;
-        max-height: 60%;
     }
     #filter-wrapper {
         max-width: 100%;
@@ -225,6 +268,12 @@ and (max-device-width: 1440px)
 }
 @media only screen and (max-device-width: 480px){
     body {font-family: Helvetica, sans-serif;}
+    #main-menu {
+        width: 70%;
+    }
+    #menu-wrapper {
+        font-size: 0.8em;
+    }
     #public-filter > li {
         width: 50%;
     }
@@ -275,8 +324,20 @@ and (max-device-width: 1440px)
 
 @media only screen and (max-device-width: 480px)
 and (orientation: portrait){
-    #logo-wrapper {
-        display: none;
+    #vote-link {
+        margin-top: 32px;
+    }
+    #stats-link {
+        margin-top: 32px;
+    }
+    #logo {
+        text-align: right;
+    }
+    #logo img {
+        max-width: 100%;
+    }
+    #filter-wrapper {
+        margin-top: 32px;
     }
 }
 
