@@ -1,7 +1,6 @@
 body {
-    background-color: #AAA;
+    background-color: #999;
     font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
-    color: white;
     padding: 0;
     margin: 0;
 }
@@ -13,6 +12,8 @@ h1 {
 
 header {
     text-align: center;
+    color: white;
+    font-size: 1.6em;
 }
 
 #logo-wrapper {
@@ -27,17 +28,18 @@ header {
 }
 
 a, a:visited {
-    color: white;
     text-decoration: none;
+}
+header a, header a:visited {
+    color: white;
 }
 
 #main-menu-wrapper {
-    background-color: #999;
-    font-size: 1.6em;
+    background-color: #888;
 }
 
 #main-menu {
-    width: 50%;
+    width: 40%;
     margin: 0 auto;
     display: inline-block;
 }
@@ -51,7 +53,7 @@ a, a:visited {
 #main-menu ul li {
     float: left;
     margin: 0;
-    width: 50%;
+    width: 33%;
 }
 
 #main-menu ul li p{
@@ -62,6 +64,27 @@ a, a:visited {
 
 }
 
+footer {
+    text-align: center;
+    position:fixed;
+    bottom:0px;
+    margin-bottom: 15px;
+    width:100%;
+}
+
+footer a {
+    color: black;
+}
+
 @media only screen and (max-device-width: 480px){
     body {font-family: Helvetica, sans-serif;}
+    header {
+        font-size: 3em;
+    }
+    #main-menu {
+        width: 80%;
+    }
+    footer {
+        font-size: 2.4em;
+    }
 }
